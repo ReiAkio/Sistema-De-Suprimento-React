@@ -1,8 +1,13 @@
 const express = require ("express");
 const router = express.Router();
+const axios = require('axios');
+const bodyParser = require('body-parser');
 const Suprimento = require ('../../src/app/models/suprimento')
 
+const app = express();
+app.use(bodyParser.json());
 
+const eventos = []
 
 
 router.get('', (req, res,next) => {
@@ -17,6 +22,7 @@ router.get('', (req, res,next) => {
   })
 
 });
+
 
 router.post('', (req, res) => {
   const {nameSupply} = req.body;
