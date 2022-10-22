@@ -5,8 +5,8 @@ const mongoose = require ('mongoose');
 const { Console } = require('console');
 const suprimentosRoutes = require ('./rotas/suprimentos');
 
-const { db } = require('../src/app/models/suprimento');
-const Usuario = require('../src/app/models/usuario');
+const { db } = require('./models/suprimento');
+const Usuario = require('./models/usuario');
 require('dotenv').config();
 
 
@@ -36,7 +36,7 @@ app.use(bodyParser.json());
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', "*");
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type,Accept');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH,PUT,DELETE,OPTIONS');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH,PUT, DELETE,OPTIONS');
   next();
 });
 
