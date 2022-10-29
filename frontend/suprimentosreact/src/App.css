@@ -26,9 +26,15 @@ padding: 30px;
     text-decoration: none;
     display: inline-block;
     font-size: 12px;
+    cursor:pointer;
   }
   h2{
     font-size: 35px;
   }
+
+.Cabecalho{
+  text-align: center;
+  background-color: ;
+}
     
   

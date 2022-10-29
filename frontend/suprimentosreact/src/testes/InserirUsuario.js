@@ -45,7 +45,7 @@ return (
 		<input type="password"  placeholder="Senha" value={password} required onChange={(e)=> {handlePasswordChange(e)}} /><br/>
 			{}
     <h1><br></br></h1>
-		<input type="submit" value="Enviar"/>
+		<button type="submit">Inserir</button>
 	</form>
 	</header>
 	</div>

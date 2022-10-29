@@ -17,10 +17,13 @@ export default function App() {
 
   return (
     <div>
-      <div>
-        <button onClick={navigateLogin}>Login</button>
-        <hr />
-        <button onClick={navigateToInserir}>Inserir</button>
+      <div className="Cabecalho">
+        <button onClick={navigateLogin}>Login</button><text> </text>
+        <button onClick={navigateLogin}>Inserir Suprimento</button><text> </text>
+        <button onClick={navigateLogin}>Lista de Suprimentos</button><text> </text>
+        <button onClick={navigateLogin}>Sair da conta</button><text> </text>
+        {/* <button onClick={navigateToInserir}>Inserir</button> */}
+        
 
         <Routes>
           <Route path="/cadastro" element={<InserirUsuario />} />
@@ -31,10 +34,4 @@ export default function App() {
   );
 }
 
-function Home() {
-  return <h2>Home</h2>;
-}
 
-function Contacts() {
-  return <h2>Contacts</h2>;
-}
