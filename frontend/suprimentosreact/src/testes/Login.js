@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import ReactDOM from 'react-dom';
 import '../App.css';
-import { useNavigate,Link} from "react-router-dom";
+import {Routes, Route, useNavigate} from 'react-router-dom';
 import InserirUsuario from './InserirUsuario';
 
  
@@ -9,6 +9,18 @@ import InserirUsuario from './InserirUsuario';
 function Login() {
 	const [name , setName] = useState('');
 	const [password , setPassword] = useState('');
+	const navigate = useNavigate();
+
+  const navigateToInserir = () => {
+    // 👇️ navigate to /contacts
+    navigate('/cadastro');
+  };
+
+  const navigateLogin = () => {
+    // 👇️ navigate to /
+    navigate('/login');
+  };
+
 
 	const handleChange =(e)=>{
 	setName(e.target.value);
@@ -37,16 +49,23 @@ return (
 	<form onSubmit={(e) => {handleSubmit(e)}}>
 	{}
 	<h2> Login de usuários </h2>
-	<h1><br></br>  </h1>
+	<br></br> 
 		
 		<input type="text"  placeholder="Nome" value={name} required onChange={(e)=> {handleChange(e)}} /><br/>
 		{}
-      <h1></h1>
+      
 		<input type="password"  placeholder="Senha" value={password} required onChange={(e)=> {handlePasswordChange(e)}} /><br/>
 			{}
-    <h1><br></br></h1>
-		<input  type="submit" value="Enviar"/> 
-        <button onClick={InserirUsuario} type="button">Inserir</button>
+	<div>
+        <button>Login</button>
+        <hr />
+        <button onClick={navigateToInserir}>Inserir novo Usuário</button>
+
+        <Routes>
+          <Route path="/cadastro" element={<InserirUsuario />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </div>
 	</form>
 	</header>
 	</div>

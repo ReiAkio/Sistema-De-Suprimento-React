@@ -17,7 +17,7 @@ padding: 30px;
   font-size: calc(20px + 2vmin);
   color: black;
   }
-  .button {
+  button {
     background-color: #4CAF50; /* Green */
     border: none;
     color: white;
@@ -25,7 +25,10 @@ padding: 30px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 12px;
+  }
+  h2{
+    font-size: 35px;
   }
     
   
