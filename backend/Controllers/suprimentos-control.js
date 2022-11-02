@@ -5,7 +5,7 @@ const Suprimento = require ('../models/suprimento')
 
 
 
-router.get('', (req, res,next) => {
+getSuprimento = async (req, res,next) => {
 
   Suprimento.find().then(documents => {
     SuprimentosEncontrados = documents;
@@ -16,9 +16,9 @@ router.get('', (req, res,next) => {
     console.log(documents)
   })
 
-});
+};
 
-router.post('', (req, res) => {
+ criarSuprimento = async (req, res) => {
   const {nameSupply} = req.body;
   let {qttSupply} = req.body;
   const {typeSupply} = req.body;
@@ -48,10 +48,10 @@ router.post('', (req, res) => {
 
 
 
-});
+};
 
 
-router.put ("/:id", (req, res, next) => {
+ updateSuprimento = async (req, res, next) => {
   const suprimento = new Suprimento({
   _id: req.params.id,
   nameSupply: req.body.nameSupply,
@@ -63,14 +63,14 @@ router.put ("/:id", (req, res, next) => {
   console.log (resultado)
   });
   res.status(200).json({mensagem: 'Atualização realizada com sucesso'})
- });
+ };
 
 
 
 
 
 
- router.get('/:id', (req, res, next) => {
+ getSuprimentoPorId = async  (req, res, next) => {
   Suprimento.findById(req.params.id).then(sup => {
   if (sup){
   res.status(200).json(sup);
@@ -78,26 +78,34 @@ router.put ("/:id", (req, res, next) => {
   else
   res.status(404).json({mensagem: "Suprimento não encontrado!"})
   })
- });
+ };
 
 
 
 
 
-router.delete('/:id', (req, res, next) => {
+ deletarSuprimento = async	 (req, res, next) => {
   console.log("id: ", req.params.id);
   Suprimento.deleteOne({ _id: req.params.id }).then((resultado) => {
   console.log(resultado);
   res.status(200).json({ mensagem: "Suprimento removido" })
   });
- });
- router.get('/:id', (req, res, next) => {
-  Suprimento.findById(req.params.id).then(cli => {
-  if (cli) {
-  res.status(200).json(cli);
-  }
-  else
-  res.status(404).json({ mensagem: "Suprimento não encontrado!" })
-  })
- });
- module.exports = router
+ };
+
+//  router.get('/:id', (req, res, next) => {
+//   Suprimento.findById(req.params.id).then(cli => {
+//   if (cli) {
+//   res.status(200).json(cli);
+//   }
+//   else
+//   res.status(404).json({ mensagem: "Suprimento não encontrado!" })
+//   })
+//  });
+
+ module.exports = {
+  criarSuprimento,
+  updateSuprimento,
+  deletarSuprimento,
+  getSuprimento,
+  getSuprimentoPorId,
+ }

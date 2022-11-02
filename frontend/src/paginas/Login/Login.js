@@ -1,8 +1,7 @@
 import React,{useState} from 'react';
-import ReactDOM from 'react-dom';
-import '../App.css';
+import './Login.css';
 import {Routes, Route, useNavigate} from 'react-router-dom';
-import InserirUsuario from './InserirUsuario';
+import InserirUsuario from '../Inserirusuario/InserirUsuario';
 
  
 
@@ -12,14 +11,12 @@ function Login() {
 	const navigate = useNavigate();
 
   const navigateToInserir = () => {
-    // 👇️ navigate to /contacts
     navigate('/cadastro');
   };
 
-  const navigateLogin = () => {
-    // 👇️ navigate to /
-    navigate('/login');
-  };
+//   const navigateLogin = () => {
+//     navigate('/login');
+//   };
 
 
 	const handleChange =(e)=>{
