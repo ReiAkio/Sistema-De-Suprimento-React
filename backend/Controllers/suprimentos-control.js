@@ -10,7 +10,7 @@ getSuprimento = async (req, res,next) => {
   Suprimento.find().then(documents => {
     SuprimentosEncontrados = documents;
     res.status(201).json({
-      mensagem: "Tudo OK",
+      // mensagem: "Tudo OK",
       suprimentos: documents
       })
     console.log(documents)

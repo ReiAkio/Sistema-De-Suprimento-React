@@ -6,9 +6,9 @@ const api = axios.create({
 
 export const inserirSuprimento = payload => api.post(`/suprimentos`, payload)
 export const getTodosSuprimentos = () => api.get(`/suprimentos`)
-export const updateSuprimentoPorId = (id, payload) => api.put(`${id}`, payload)
-export const deletarSuprimentoPorId = id => api.delete(`${id}`)
-export const getSuprimentoPorId = id => api.get(`/${id}`)
+export const updateSuprimentoPorId = (id, payload) => api.put(`/suprimentos/${id}`, payload)
+export const deletarSuprimentoPorId = id => api.delete(`/suprimentos/${id}`)
+export const getSuprimentoPorId = id => api.get(`/suprimentos/${id}`)
 
 const apis = {
     inserirSuprimento,
