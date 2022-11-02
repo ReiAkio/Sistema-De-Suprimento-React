@@ -1,57 +1,3 @@
-// import React, {useState} from 'react';
-// import './Inserirusuario.css';
-
-// function InserirUsuario() {
-// 	const [name , setName] = useState('');
-// 	const [password , setPassword] = useState('');
-
-
-	
-// 	const handleChange =(e)=>{
-// 	setName(e.target.value);
-// 	}
-
-// 	const handlePasswordChange =(e)=>{
-// 	setPassword(e.target.value);
-// 	}
-
-// 	const handleSubmit=(e)=>{
-// 	if(password!=null)
-// 	{
-			
-//     alert('Usuario Cadastrado com o nome: ' + name +
-// 		'');
-// 	}
-// 	else{alert("password Not Match");
-		
-// 	}
-// 	e.preventDefault();
-
-// 	}
-// return (
-// 	<div className="InserirUsuario">
-// 	<header className="InserirUsuario-header">
-// 	<form onSubmit={(e) => {handleSubmit(e)}}>
-// 	{}
-// 	<h2> Inserção de usuários </h2>
-// 	<h1><br></br>  </h1>
-		
-// 		<input type="text"  placeholder="Nome" value={name} required onChange={(e)=> {handleChange(e)}} /><br/>
-// 		{}
-//       <br></br>
-// 		<input type="password"  placeholder="Senha" value={password} required onChange={(e)=> {handlePasswordChange(e)}} /><br/>
-// 			{}
-//     <h1><br></br></h1>
-// 		<button type="submit">Inserir</button>
-// 	</form>
-// 	</header>
-// 	</div>
-// );
-// }
-
-// export default InserirUsuario;
-
-
 import React, { Component } from 'react'
 import api from '../../api'
 
@@ -77,11 +23,7 @@ const InputText = styled.input.attrs({
     margin: 5px;
 `
 
-const Select = styled.select.attrs({
-    className: 'form-control',
-})`
-    margin: 5px;
-`
+
 
 const Button = styled.button.attrs({
     className: `btn btn-primary`,
@@ -123,17 +65,21 @@ class Inserirusuario extends Component {
         const { userName, password } = this.state
         const payload = { userName, password }
 
+        if(password.length <8)
+        {alert("A senha precisar ter pelo menos 8 caracteres");}
+        else{  
         await api.inserirUsuario(payload).then(res => {
-            window.alert(`Usuario inserido com successo`)
+            window.alert(`Usuario ` + userName + ` cadastrado com successo`)
             this.setState({
                 userName: '',
                 passsword: '',
             })
         })
     }
+    }
 
-	myFunction() {
-		var x = document.getElementById("myInput");
+	showPassword() {
+		var x = document.getElementById("inputPassword");
 		if (x.type === "password") {
 		  x.type = "text";
 		} else {
@@ -145,26 +91,29 @@ class Inserirusuario extends Component {
         const { userName, password } = this.state
         return (
             <Wrapper>
-                <Title>Criar Usuário</Title>
+                <Title>Criar Usuário</Title><br></br>
 
-                <Label>Nome: </Label>
+                <Label>Nome </Label>
                 <InputText
                     type="text"
+                    placeholder='Nome'
                     value={userName}
                     onChange={this.handleChangeInputNome}
+
                 />
 
-				<Label>Senha: </Label>
+				<Label>Senha </Label>
                 <InputText
                     type="password"
+                    placeholder='senha'
                     value={password}
                     onChange={this.handleChangeInputSenha}
-					id="myInput"
+					id="inputPassword"
                 />
 			<Label>Mostrar senha</Label>
 			<input
 			type="checkbox"
-			onClick={this.myFunction}
+			onClick={this.showPassword}
 			/>
 			<br></br>             
 
