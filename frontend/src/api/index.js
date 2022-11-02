@@ -10,12 +10,26 @@ export const updateSuprimentoPorId = (id, payload) => api.put(`/suprimentos/${id
 export const deletarSuprimentoPorId = id => api.delete(`/suprimentos/${id}`)
 export const getSuprimentoPorId = id => api.get(`/suprimentos/${id}`)
 
+
+export const inserirUsuario = payload => api.post(`/usuario`, payload)
+export const getTodosUsuarios = () => api.get(`/usuario`)
+export const login = payload => api.post(`/login`, payload)
+
+
+
+
+
+
+
 const apis = {
     inserirSuprimento,
     getTodosSuprimentos,
     updateSuprimentoPorId,
     deletarSuprimentoPorId,
     getSuprimentoPorId,
+    inserirUsuario,
+    getTodosUsuarios,
+    login
 }
 
 export default apis

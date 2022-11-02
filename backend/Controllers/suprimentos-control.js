@@ -1,9 +1,9 @@
 const express = require ("express");
-const router = express.Router();
 const Suprimento = require ('../models/suprimento')
 
 
-
+let suprimentosAux = [];
+let contadorSuprimento = 0;
 
 getSuprimento = async (req, res,next) => {
 
