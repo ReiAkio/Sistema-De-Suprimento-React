@@ -1,82 +1,50 @@
-import React, { Component } from 'react'
-import ReactTable from 'react-table'
-
+import React from "react";
 import api from '../../api'
+class ListaSuprimentos extends React.Component{
 
-import styled from 'styled-components'
-
-
-const Wrapper = styled.div`
-    padding: 0 40px 40px 40px;
-`
-
-class ListaSuprimento extends Component {
-    constructor(props) {
+    constructor(props){
         super(props)
         this.state = {
-            suprimentos: [],
-            columns: [],
-            isLoading: false,
+            list: []
         }
+        this.callApi = this.callApi.bind(this)
+        this.callApi();
     }
 
-    componentDidMount = async () => {
-        this.setState({ isLoading: true })
 
-        await api.getTodosSuprimentos().then(suprimentos => {
+    callApi() {
+       fetch("http://localhost:4000/suprimentos")
+        .then((response) => response.json()
+        ).then((data) => {
+            console.log(data)
             this.setState({
-                suprimentos: suprimentos.data,
-                isLoading: false,
-            })
+                list:data.data
+            }) 
         })
     }
 
-    render() {
-        const { suprimentos, isLoading } = this.state
-        console.log('TCL: ListaSuprimentos -> render -> suprimentos', suprimentos)
-
-        const columns = [
-            {
-                Header: 'ID',
-                accessor: '_id',
-                filterable: true,
-            },
-            {
-                Header: 'Nome',
-                accessor: 'nameSupply',
-                filterable: true,
-            },
-            {
-                Header: 'Quantidade',
-                accessor: 'qttSupply',
-                filterable: true,
-            },
-            {
-                Header: 'Tipo',
-                accessor: 'typeSupply',
-            },
-        ]
-
-        let showTable = true
-        if (!suprimentos.length ) {
-            showTable = false
-        }
-
+render(){
+    let tb_data = this.state.list.map((item) =>{
         return (
-            <Wrapper>
-                {showTable && (
-                    <ReactTable
-                        data={suprimentos}
-                        columns={columns}
-                        loading={isLoading}
-                        defaultPageSize={10}
-                        showPageSizeOptions={true}
-                        minRows={0}
-                    />
-                )}
-            </Wrapper>
+            <tr key ={item._id}>
+                <td>{item.nameSupply}</td>
+                <td>{item.qttSupply}</td>
+                <td>{item.typeSupply}</td>
+                <td><button className="btn btn-primary">Editar</button></td>
+                <td><button className="btn btn-danger">Remove</button></td>
+            </tr>
         )
-    }
+    })
+    return(
+        <div>
+            <table>
+                <tbody>
+                    {tb_data}
+                </tbody>
+            </table>
+        </div>
+    )
+}
 }
 
-export default ListaSuprimento
+export default ListaSuprimentos;

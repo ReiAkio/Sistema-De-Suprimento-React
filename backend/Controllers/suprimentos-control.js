@@ -1,3 +1,4 @@
+const { json } = require("express");
 const express = require ("express");
 const Suprimento = require ('../models/suprimento')
 
@@ -7,13 +8,10 @@ let contadorSuprimento = 0;
 
 getSuprimento = async (req, res,next) => {
 
-  Suprimento.find().then(documents => {
-    SuprimentosEncontrados = documents;
-    res.status(201).json({
-      // mensagem: "Tudo OK",
-      suprimentos: documents
-      })
-    console.log(documents)
+  Suprimento.find().then(suprimentos => {
+    SuprimentosEncontrados = suprimentos;
+    res.status(201).json({ success: true, data: suprimentos})
+    console.log(suprimentos)
   })
 
 };
