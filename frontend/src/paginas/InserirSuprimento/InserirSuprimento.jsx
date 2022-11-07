@@ -111,6 +111,7 @@ class InserirSuprimento extends Component {
 
                 <Label>Tipo: </Label>
                 <Select value={typeSupply} onChange={this.handleChangeInputTipo}>
+                <option>--</option>
                 <option value="Kg">KG</option>
                 <option value="L">L</option>
                 </Select>

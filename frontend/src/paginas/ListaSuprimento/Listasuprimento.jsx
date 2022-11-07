@@ -1,5 +1,29 @@
-import React from "react";
+import React, { Component } from 'react'
 import api from '../../api'
+import styled from 'styled-components'
+const Delete = styled.div`
+    color: #ff0000;
+    cursor: pointer;
+`
+class DeleteSuprimento extends Component {
+    deleteUser = event => {
+        event.preventDefault()
+
+        if (
+            window.confirm(
+                `Deseja deletar esse item permanentemente?`,
+            )
+        ) {
+            api.deletarSuprimentoPorId(this.props.id)
+            window.location.reload()
+        }
+    }
+
+    render() {
+        return <Delete onClick={this.deleteUser}>Delete</Delete>
+    }
+}
+
 class ListaSuprimentos extends React.Component{
 
     constructor(props){
@@ -30,8 +54,9 @@ render(){
                 <td>{item.nameSupply}</td>
                 <td>{item.qttSupply}</td>
                 <td>{item.typeSupply}</td>
-                <td><button className="btn btn-primary">Editar</button></td>
-                <td><button className="btn btn-danger">Remove</button></td>
+                <span>
+                            <DeleteSuprimento id={item._id} />
+                        </span>
             </tr>
         )
     })
