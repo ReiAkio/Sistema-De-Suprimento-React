@@ -28,7 +28,7 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/suprimentos/lista" element={<ListaSuprimento/>} />
           <Route path="/suprimentos/criar" element={<InserirSuprimento />} />
-          <Route path="/suprimentos/update" element={<UpdateSuprimento />} />
+          <Route path="/suprimentos/update/:id" element={<UpdateSuprimento />} />
 
         </Routes>
     // <div>

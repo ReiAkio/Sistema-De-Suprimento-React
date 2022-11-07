@@ -5,6 +5,22 @@ const Delete = styled.div`
     color: #ff0000;
     cursor: pointer;
 `
+const Update = styled.div`
+    color: #ef9b0f;
+    cursor: pointer;
+`
+class UpdateSuprimento extends Component {
+    updateSupri = event => {
+        event.preventDefault()
+        api.updateSuprimentoPorId(this.props.id)
+        window.location.href = `/suprimentos/update/${this.props.id}`
+    }
+
+    render() {
+        return <Update onClick={this.updateSupri}>Update</Update>
+    }
+}
+
 class DeleteSuprimento extends Component {
     deleteUser = event => {
         event.preventDefault()
@@ -56,6 +72,9 @@ render(){
                 <td>{item.typeSupply}</td>
                 <span>
                             <DeleteSuprimento id={item._id} />
+                        </span>
+                        <span>
+                            <UpdateSuprimento id={item._id} />
                         </span>
             </tr>
         )

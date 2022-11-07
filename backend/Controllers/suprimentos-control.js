@@ -31,7 +31,7 @@ getSuprimento = async (req, res,next) => {
 
     if (suprimento) {
       //console.log ("Entrei if")
-      suprimento.qttSupply += req.body.qttSupply
+      suprimento.qttSupply += parseFloat(req.body.qttSupply)
       suprimento.save();
       res.status(200).json(suprimento)
     }
