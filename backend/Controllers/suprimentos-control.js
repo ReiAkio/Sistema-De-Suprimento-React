@@ -6,14 +6,30 @@ const Suprimento = require ('../models/suprimento')
 let suprimentosAux = [];
 let contadorSuprimento = 0;
 
-getSuprimento = async (req, res,next) => {
+// getSuprimento = async (req, res,next) => {
 
-  Suprimento.find().then(suprimentos => {
-    SuprimentosEncontrados = suprimentos;
-    res.status(201).json({ success: true, data: suprimentos})
-    console.log(suprimentos)
-  })
+//   Suprimento.find().then(suprimentos => {
+//     SuprimentosEncontrados = suprimentos;
+//     res.status(201).json({ success: true, data: suprimentos})
+//     console.log(suprimentos)
+//   })
 
+// };
+
+
+
+getSuprimento = async (req, res) => {
+  await Suprimento.find({}, (err, suprimentos) => {
+      if (err) {
+          return res.status(400).json({ success: false, error: err })
+      }
+      if (!suprimentos.length) {
+          return res
+              .status(404)
+              .json({ success: false, error: `Suprimento nao encontrado` })
+      }
+      return res.status(200).json({ success: true, data: suprimentos })
+  }).clone().catch(err => console.log(err))
 };
 
  criarSuprimento = async (req, res) => {

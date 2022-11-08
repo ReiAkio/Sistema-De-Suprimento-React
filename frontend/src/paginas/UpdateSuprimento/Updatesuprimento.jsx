@@ -3,6 +3,8 @@ import api from '../../api'
 
 import styled from 'styled-components'
 
+import { Link, useParams } from 'react-router-dom';
+
 const Title = styled.h1.attrs({
     className: 'h1',
 })``
@@ -23,12 +25,6 @@ const InputText = styled.input.attrs({
     margin: 5px;
 `
 
-const Select = styled.select.attrs({
-    className: 'form-control',
-})`
-    margin: 5px;
-`
-
 const Button = styled.button.attrs({
     className: `btn btn-primary`,
 })`
@@ -44,7 +40,7 @@ const CancelButton = styled.a.attrs({
 class UpdateSuprimento extends Component {
     constructor(props) {
         super(props)
-
+        const { id } = useParams();
         this.state = {
             nameSupply: '',
             qttSupply: '',
@@ -52,7 +48,7 @@ class UpdateSuprimento extends Component {
         }
     }
 
-    handleChangeInputNome = async event => {
+    handleChangeInputName = async event => {
         const nameSupply = event.target.value
         this.setState({ nameSupply })
     }
@@ -70,12 +66,12 @@ class UpdateSuprimento extends Component {
         this.setState({ typeSupply })
     }
 
-    handleUpdateSuprimento = async () => {
+    handleUpdateSuprimentos = async () => {
         const { id, nameSupply, qttSupply, typeSupply } = this.state
         const payload = { nameSupply, qttSupply, typeSupply }
 
         await api.updateSuprimentoPorId(id, payload).then(res => {
-            window.alert(`Suprimento alterado com successo`)
+            window.alert(`Suprimento atualizado com sucesso`)
             this.setState({
                 nameSupply: '',
                 qttSupply: '',
@@ -83,8 +79,9 @@ class UpdateSuprimento extends Component {
             })
         })
     }
+
     componentDidMount = async () => {
-        const { id } = this.state
+        const { id } = useParams();
         const suprimento = await api.getSuprimentoPorId(id)
 
         this.setState({
@@ -98,37 +95,36 @@ class UpdateSuprimento extends Component {
         const { nameSupply, qttSupply, typeSupply } = this.state
         return (
             <Wrapper>
-                <Title>Criar Suprimento</Title>
+                <Title>Atualizar Suprimento</Title>
 
-                <Label>Nome: </Label>
+                <Label>Nome </Label>
                 <InputText
                     type="text"
                     value={nameSupply}
-                    onChange={this.handleChangeInputNome}
+                    onChange={this.handleChangeInputName}
                 />
 
-                <Label>Quantidade: </Label>
+                <Label>Quantidade </Label>
                 <InputText
                     type="number"
                     step="0.1"
                     lang="en-US"
-                    min="0"
-                    max="100000"
+                    min="1"
+                    max="10000000"
                     pattern="[0-9]+([,\.][0-9]+)?"
                     value={qttSupply}
                     onChange={this.handleChangeInputQuantidade}
                 />
 
                 <Label>Tipo: </Label>
-                <Select value={typeSupply} onChange={this.handleChangeInputTipo}>
-                <option>--</option>
-                <option value="Kg">KG</option>
-                <option value="L">L</option>
-                </Select>
-                <br></br>
+                <InputText
+                    type="text"
+                    value={typeSupply}
+                    onChange={this.handleChangeInputTipo}
+                />
 
-                <Button onClick={this.handleUpdateSuprimento}>Alterar Suprimento</Button>
-                <CancelButton href={'/suprimentos/lista'}>Cancel</CancelButton>
+                <Button onClick={this.handleUpdateSuprimentos}>Atualizar Suprimento</Button>
+                <CancelButton href={'/suprimentos/lista'}>Cancelar</CancelButton>
             </Wrapper>
         )
     }

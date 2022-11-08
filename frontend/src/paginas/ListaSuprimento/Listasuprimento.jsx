@@ -1,23 +1,34 @@
 import React, { Component } from 'react'
+import ReactTable from 'react-table-6';
+import 'react-table-6/react-table.css';
+
 import api from '../../api'
 import styled from 'styled-components'
-const Delete = styled.div`
-    color: #ff0000;
-    cursor: pointer;
+
+
+const Wrapper = styled.div`
+    padding: 0 40px 40px 40px;
 `
+
 const Update = styled.div`
     color: #ef9b0f;
     cursor: pointer;
 `
+
+const Delete = styled.div`
+    color: #ff0000;
+    cursor: pointer;
+`
+
 class UpdateSuprimento extends Component {
-    updateSupri = event => {
+    updateUser = event => {
         event.preventDefault()
-        api.updateSuprimentoPorId(this.props.id)
+
         window.location.href = `/suprimentos/update/${this.props.id}`
     }
 
     render() {
-        return <Update onClick={this.updateSupri}>Update</Update>
+        return <Update onClick={this.updateUser}>Update</Update>
     }
 }
 
@@ -27,7 +38,7 @@ class DeleteSuprimento extends Component {
 
         if (
             window.confirm(
-                `Deseja deletar esse item permanentemente?`,
+                `Voce tem certeza que quer deletar ${this.props.name} permanentemente?`,
             )
         ) {
             api.deletarSuprimentoPorId(this.props.id)
@@ -40,55 +51,95 @@ class DeleteSuprimento extends Component {
     }
 }
 
-class ListaSuprimentos extends React.Component{
-
-    constructor(props){
+class ListaSuprimentos extends Component {
+    constructor(props) {
         super(props)
         this.state = {
-            list: []
+            suprimentos: [],
+            columns: [],
+            isLoading: false,
         }
-        this.callApi = this.callApi.bind(this)
-        this.callApi();
     }
 
+    componentDidMount = async () => {
+        this.setState({ isLoading: true })
 
-    callApi() {
-       fetch("http://localhost:4000/suprimentos")
-        .then((response) => response.json()
-        ).then((data) => {
-            console.log(data)
+        await api.getTodosSuprimentos().then(suprimentos => {
             this.setState({
-                list:data.data
-            }) 
+                suprimentos: suprimentos.data.data,
+                isLoading: false,
+            })
         })
     }
 
-render(){
-    let tb_data = this.state.list.map((item) =>{
-        return (
-            <tr key ={item._id}>
-                <td>{item.nameSupply}</td>
-                <td>{item.qttSupply}</td>
-                <td>{item.typeSupply}</td>
-                <span>
-                            <DeleteSuprimento id={item._id} />
-                        </span>
+    render() {
+        const { suprimentos, isLoading } = this.state
+
+        const columns = [
+            {
+                Header: 'ID',
+                accessor: '_id',
+                filterable: true,
+            },
+            {
+                Header: 'Nome',
+                accessor: 'nameSupply',
+                filterable: true,
+            },
+            {
+                Header: 'Quantidade',
+                accessor: 'qttSupply',
+                filterable: true,
+            },
+            {
+                Header: 'Tipo',
+                accessor: 'typeSupply',
+
+            },
+            {
+                Header: '',
+                accessor: '',
+                Cell: function(props) {
+                    return (
                         <span>
-                            <UpdateSuprimento id={item._id} />
+                            <DeleteSuprimento name={props.original.nameSupply} />
                         </span>
-            </tr>
+                    )
+                },
+            },
+            {
+                Header: '',
+                accessor: '',
+                Cell: function(props) {
+                    return (
+                        <span>
+                            <UpdateSuprimento id={props.original._id} nome={props.original.nameSupply} quantidade={props.original.qttSupply} tipo={props.original.typeSupply} />
+                        </span>
+                    )
+                },
+            },
+        ]
+
+        let showTable = true
+        if (!suprimentos.length) {
+            showTable = false
+        }
+
+        return (
+            <Wrapper>
+                {showTable && (
+                    <ReactTable
+                        data={suprimentos}
+                        columns={columns}
+                        loading={isLoading}
+                        defaultPageSize={10}
+                        showPageSizeOptions={true}
+                        minRows={0}
+                    />
+                )}
+            </Wrapper>
         )
-    })
-    return(
-        <div>
-            <table>
-                <tbody>
-                    {tb_data}
-                </tbody>
-            </table>
-        </div>
-    )
-}
+    }
 }
 
-export default ListaSuprimentos;
+export default ListaSuprimentos
