@@ -5,10 +5,13 @@ import 'react-table-6/react-table.css';
 import api from '../../api'
 import styled from 'styled-components'
 
+import img from '../../img/teste.png';
+
 
 const Wrapper = styled.div`
     padding: 0 40px 40px 40px;
-`
+    
+  `
 
 const Update = styled.div`
     color: #ef9b0f;
@@ -76,11 +79,11 @@ class ListaSuprimentos extends Component {
         const { suprimentos, isLoading } = this.state
 
         const columns = [
-            {
-                Header: 'ID',
-                accessor: '_id',
-                filterable: true,
-            },
+            // {
+            //     Header: 'ID',
+            //     accessor: '_id',
+            //     filterable: true,
+            // },
             {
                 Header: 'Nome',
                 accessor: 'nameSupply',
@@ -126,6 +129,7 @@ class ListaSuprimentos extends Component {
         }
 
         return (
+            <div>
             <Wrapper>
                 {showTable && (
                     <ReactTable
@@ -138,6 +142,7 @@ class ListaSuprimentos extends Component {
                     />
                 )}
             </Wrapper>
+            </div>
         )
     }
 }

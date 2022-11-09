@@ -3,7 +3,7 @@ import api from '../../api'
 
 import styled from 'styled-components'
 
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const Title = styled.h1.attrs({
     className: 'h1',
@@ -36,12 +36,12 @@ const CancelButton = styled.a.attrs({
 })`
     margin: 15px 15px 15px 5px;
 `
-
 class UpdateSuprimento extends Component {
     constructor(props) {
         super(props)
-        const { id } = useParams();
+
         this.state = {
+            id: this.props.match.params.id,
             nameSupply: '',
             qttSupply: '',
             typeSupply: '',
@@ -81,7 +81,7 @@ class UpdateSuprimento extends Component {
     }
 
     componentDidMount = async () => {
-        const { id } = useParams();
+        const { id } = this.state
         const suprimento = await api.getSuprimentoPorId(id)
 
         this.setState({
@@ -129,5 +129,14 @@ class UpdateSuprimento extends Component {
         )
     }
 }
+
+
+const UpdateSuprimentos = () => {
+    let params = useParams();
+    //console.log(params);
+    console.log(params.id);
+    return <div>{params.id}</div>;
+  };
+
 
 export default UpdateSuprimento

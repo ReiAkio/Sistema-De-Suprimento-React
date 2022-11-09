@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-const Collapse = styled.div.attrs({
-    className: 'collpase navbar-collapse',
-})``
+// const Collapse = styled.div.attrs({
+//     className: 'collpase navbar-collapse',
+// })``
 
 const List = styled.div.attrs({
     className: 'navbar-nav mr-auto',
@@ -21,7 +21,7 @@ class Links extends Component {
                 <Link to="/suprimentos/lista" className="navbar-brand">
                     Lista de Suprimentos
                 </Link>
-                <Collapse>
+                
                     <List>
                         <Item>
                             <Link to="/suprimentos/criar" className="nav-link">
@@ -34,7 +34,7 @@ class Links extends Component {
                             </Link>
                         </Item>
                     </List>
-                </Collapse>
+                
             </React.Fragment>
         )
     }
