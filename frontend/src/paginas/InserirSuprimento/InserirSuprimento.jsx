@@ -101,7 +101,7 @@ class InserirSuprimento extends Component {
 
         this.state = {
             nameSupply: '',
-            qttSupply: '',
+            qttSupply: 0,
             typeSupply: '',
         }
     }
@@ -132,7 +132,7 @@ class InserirSuprimento extends Component {
             window.alert(`Suprimento inserido com successo`)
             this.setState({
                 nameSupply: '',
-                qttSupply: '',
+                qttSupply: 0,
                 typeSupply: '',
             })
         })
@@ -153,7 +153,7 @@ class InserirSuprimento extends Component {
 
                 <Label>Quantidade: </Label>
                 <InputText
-                    type="number"
+                    type= "number"
                     step="0.1"
                     lang="en-US"
                     min="0"

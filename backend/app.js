@@ -3,8 +3,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require ('mongoose');
 const { Console } = require('console');
-const suprimentosRoutes = require ('./rotas/suprimento-router');
-const usuariosRoutes = require ('./rotas/usuario-router');
+const suprimentosRoutes = require ('./rotas/Suprimento-router');
+const usuariosRoutes = require ('./rotas/Usuario-router');
 
 const { db } = require('./models/suprimento');
 

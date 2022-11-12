@@ -1,6 +1,6 @@
 const express = require('express')
 
-const Suprimentosctrl = require('../controllers/suprimentos-control')
+const Suprimentosctrl = require('../Controllers/suprimentos-control')
 
 const router = express.Router()
 
