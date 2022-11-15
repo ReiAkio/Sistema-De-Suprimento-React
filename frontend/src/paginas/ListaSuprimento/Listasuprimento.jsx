@@ -5,7 +5,6 @@ import 'react-table-6/react-table.css';
 import api from '../../api'
 import styled from 'styled-components'
 
-import img from '../../img/teste.png';
 
 
 const Wrapper = styled.div`
