@@ -95,6 +95,19 @@ getSuprimento = async (req, res) => {
  };
 
 
+// getSuprimentoPorId = async (req, res) => {
+//   await Suprimento.findOne({ _id: req.params.id }, (err, suprimento) => {
+//       if (err) {
+//           return res.status(400).json({ success: false, error: err })
+//       }
+
+//       return res.status(200).json({ success: true, data: suprimento })
+//   }).catch(err => console.log(err))
+// }
+
+
+
+
 
 
 
