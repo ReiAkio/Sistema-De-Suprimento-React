@@ -37,7 +37,7 @@ const CancelButton = styled.a.attrs({
     margin: 15px 15px 15px 5px;
 `
 
-class Inserirusuario extends Component {
+class InserirUsuario extends Component {
     constructor(props) {
         super(props)
 
@@ -124,4 +124,4 @@ class Inserirusuario extends Component {
     }
 }
 
-export default Inserirusuario
+export default InserirUsuario

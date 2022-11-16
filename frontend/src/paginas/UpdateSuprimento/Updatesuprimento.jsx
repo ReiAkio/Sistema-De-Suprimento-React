@@ -143,7 +143,7 @@
 
 
 
-import React, { Component, useState,useEffect } from 'react'
+import React, { useState,useEffect } from 'react'
 import api from '../../api'
 
 import styled from 'styled-components'
@@ -189,55 +189,74 @@ const CancelButton = styled.a.attrs({
 `
 function UpdateSuprimento() {
     let params = useParams();
-    console.log(params);
-    console.log(params.id);
+    //console.log(params);
+   
 
 
-    const [id, setId] = useState(params.id);
+    //const [id, setId] = useState(params.id);
     const [nameSupply, setName] = useState('');
     const [qttSupply, setQtt] = useState('');
     const [typeSupply, setType] = useState('');
 
-    useEffect(() => {
-        const fetchData = async () => {
-        const suprimento = await api.getSuprimentoPorId(params.id);
-        return suprimento
-    } 
-    const suprimento = fetchData()
-    console.log(suprimento)
+    const fetchData =  () => {
+        return api.getSuprimentoPorId(params.id);
+        // setName(suprimento.data.nameSupply);
+        // setQtt(suprimento.data.qttSupply);
+        // setType(suprimento.data.typeSupply);
+        // return suprimento.then(data => console.log(data))
+    }
+    const fetch = () => {
+        const suprimento = fetchData()
+    suprimento.then(data => console.log(data.data.nameSupply))
+    suprimento.then(data => setName(data.data.nameSupply))
+    suprimento.then(data => setQtt(data.data.qttSupply))
+    suprimento.then(data => setType(data.data.typeSupply))
+    }
 
-        //setName(suprimento.data.data.nameSupply);
-        //setQtt(suprimento.data.data.qttSupply);
-        //setType(suprimento.data.data.typeSupply);
+    useEffect(() => {
+    
+    fetch()
+    
+    
+    
+
+    //setName(suprimento.data.nameSupply);
+    // setQtt(suprimento.data.qttSupply);
+    // setType(suprimento.data.typeSupply);
+        
         
 
-        }
+        },[]
     );
 
-    const handleNameSupplyInput = async e => {
-        setName({ nameSupply: e.target.value });
+    const handleNameSupplyInput = async event => {
+        const nameSupply = event.target.value
+        setName( nameSupply);
       };
-      const handleQttInput = async e => {
-        setQtt({ firstName: e.target.value });
+      const handleQttInput = async event => {
+        const qttSupply = event.target.validity.valid
+            ? event.target.value
+            : this.state.qttSupply
+        setQtt( qttSupply );
       };
-      const handleTypeInput = async e => {
-        setType({ lastName: e.target.value });
+      const handleTypeInput = async event => {
+        const typeSupply = event.target.value
+        setType( typeSupply );
       };
 
        const handleUpdateSuprimento = async () => {
-                const { id, nameSupply, qttSupply, typeSupply } = this.state
                 const payload = { nameSupply, qttSupply, typeSupply }
         
-                await api.updateSuprimentoPorId(id, payload).then(res => {
+                await api.updateSuprimentoPorId(params.id, payload).then(res => {
                     window.alert(`Suprimento atualizado com sucesso`)
                     setName("");
                     setQtt("");
                     setType("");
+                    window.location.href = `/suprimentos/lista`
                 })
             }
 
     return (
-    
     <><Wrapper>
             <Title>Criar Suprimento</Title>
 
@@ -268,9 +287,7 @@ function UpdateSuprimento() {
 
             <Button onClick={handleUpdateSuprimento}>Adicionar Suprimento</Button>
             <CancelButton href={'/suprimentos/lista'}>Cancel</CancelButton>
-        </Wrapper>
-        
-        <div>{params.id}</div></>
+        </Wrapper></>
     
     
     )

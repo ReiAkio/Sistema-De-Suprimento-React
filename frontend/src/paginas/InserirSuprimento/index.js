@@ -1,3 +1,3 @@
-import InserirSuprimento from "./InserirSuprimento";
+import InserirSuprimento from './InserirSuprimento'
 
 export {InserirSuprimento}

@@ -104,7 +104,7 @@ class ListaSuprimentos extends Component {
                 Cell: function(props) {
                     return (
                         <span>
-                            <DeleteSuprimento name={props.original.nameSupply} />
+                            <DeleteSuprimento id={props.original._id} />
                         </span>
                     )
                 },
@@ -115,7 +115,7 @@ class ListaSuprimentos extends Component {
                 Cell: function(props) {
                     return (
                         <span>
-                            <UpdateSuprimento id={props.original._id} nome={props.original.nameSupply} quantidade={props.original.qttSupply} tipo={props.original.typeSupply} />
+                            <UpdateSuprimento id={props.original._id} />
                         </span>
                     )
                 },

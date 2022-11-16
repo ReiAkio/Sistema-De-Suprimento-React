@@ -75,6 +75,7 @@ getSuprimento = async (req, res) => {
   Suprimento.updateOne({_id: req.params.id}, suprimento)
   .then ((resultado) => {
   console.log (resultado)
+  console.log("Atualização realizada com sucesso")
   });
   res.status(200).json({mensagem: 'Atualização realizada com sucesso'})
  };
@@ -84,7 +85,7 @@ getSuprimento = async (req, res) => {
 
 
 
- getSuprimentoPorId = async  (req, res, next) => {
+ getSuprimentoPorId =  (req, res, next) => {
   Suprimento.findById(req.params.id).then(sup => {
   if (sup){
   res.status(200).json(sup);
@@ -95,26 +96,13 @@ getSuprimento = async (req, res) => {
  };
 
 
-// getSuprimentoPorId = async (req, res) => {
-//   await Suprimento.findOne({ _id: req.params.id }, (err, suprimento) => {
-//       if (err) {
-//           return res.status(400).json({ success: false, error: err })
-//       }
-
-//       return res.status(200).json({ success: true, data: suprimento })
-//   }).catch(err => console.log(err))
-// }
-
-
-
-
-
-
 
  deletarSuprimento = async	 (req, res, next) => {
   console.log("id: ", req.params.id);
   Suprimento.deleteOne({ _id: req.params.id }).then((resultado) => {
-  console.log(resultado);
+    console.log("Suprimento removido")
+    console.log(resultado);
+  
   res.status(200).json({ mensagem: "Suprimento removido" })
   });
  };

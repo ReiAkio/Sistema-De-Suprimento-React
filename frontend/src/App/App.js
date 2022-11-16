@@ -1,7 +1,7 @@
 import {Routes, Route} from 'react-router-dom';
 import React from 'react';
 import Login from '../paginas/Login/Login';
-import InserirUsuario from '../paginas/Inserirusuario/InserirUsuario';
+import { InserirUsuario } from '../paginas/Inserirusuario';
 import { ListaSuprimento } from '../paginas/ListaSuprimento';
 import { InserirSuprimento } from '../paginas/InserirSuprimento';
 import { UpdateSuprimento } from '../paginas/UpdateSuprimento';
