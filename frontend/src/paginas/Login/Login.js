@@ -2,12 +2,15 @@ import React,{useState} from 'react';
 import './Login.css';
 import {Routes, Route, useNavigate} from 'react-router-dom';
 import InserirUsuario from '../Inserirusuario/InserirUsuario';
+import axios from "axios";
+
 
  
 
 function Login() {
-	const [name , setName] = useState('');
+	const [userName , setName] = useState('');
 	const [password , setPassword] = useState('');
+	const [login, setLogin] = useState(false);
 	const navigate = useNavigate();
 
   const navigateToInserir = () => {
@@ -17,29 +20,26 @@ function Login() {
 //   const navigateLogin = () => {
 //     navigate('/login');
 //   };
+const handleSubmit = (e) => {
+    const configuration = {
+		method: "post",
+		url: "http://localhost:4000/usuario/login",
+		data: {
+		  userName,
+		  password,
+		},
+	  };
+	  axios(configuration)
+      .then((result) => {
+        setLogin(true);
+      })
+      .catch((error) => {
+        error = new Error();
+      });
+  }
 
 
-	const handleChange =(e)=>{
-	setName(e.target.value);
-	}
-	const handlePasswordChange =(e)=>{
-	setPassword(e.target.value);
-	}
 
-	const handleSubmit=(e)=>{
-	if(password.length <8)
-	{alert("A senha precisar ter pelo menos 8 caracteres");
-			
-    
-	}
-	else{
-	alert('Usuario Cadastrado com o nome: ' + name +
-		'');
-		
-	}
-	e.preventDefault();
-
-	}
 return (
 	<div className="Login">
 	<header className="Login-header">
@@ -48,13 +48,13 @@ return (
 	<h2> Login de usuários </h2>
 	<br></br> 
 		
-		<input type="text"  placeholder="Nome" value={name} required onChange={(e)=> {handleChange(e)}} /><br/>
+		<input type="text"  placeholder="Nome" value={userName} name="userName" onChange={(e) => setName(e.target.value)} /><br/>
 		{}
       
-		<input type="password"  placeholder="Senha" value={password} required onChange={(e)=> {handlePasswordChange(e)}} /><br/>
+		<input type="password"  placeholder="Senha" value={password} name="password" onChange={(e) => setPassword(e.target.value)} /><br/>
 			{}
 	<div>
-        <button>Login</button>
+        <button onClick={(e) => handleSubmit(e)}>Login</button>
         <hr />
         <button onClick={navigateToInserir}>Inserir novo Usuário</button>
 
@@ -62,6 +62,11 @@ return (
           <Route path="/cadastro" element={<InserirUsuario />} />
           <Route path="/login" element={<Login />} />
         </Routes>
+		{login ? (
+          <p className="text-success">You Are Logged in Successfully</p>
+        ) : (
+          <p className="text-danger">You Are Not Logged in</p>
+        )}
       </div>
 	</form>
 	</header>
