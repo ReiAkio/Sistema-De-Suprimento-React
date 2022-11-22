@@ -102,7 +102,7 @@ class InserirSuprimento extends Component {
                     type="number"
                     step="0.1"
                     lang="en-US"
-                    min="1"
+                    min="0,1"
                     max="100000"
                     pattern="[0-9]+([,\.][0-9]+)?"
                     value={qttSupply}

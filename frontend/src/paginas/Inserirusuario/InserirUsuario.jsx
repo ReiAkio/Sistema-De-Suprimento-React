@@ -118,7 +118,7 @@ class InserirUsuario extends Component {
 			<br></br>             
 
                 <Button onClick={this.handleIncludeUsuario}>Adicionar Usuario</Button>
-                <CancelButton href={'/suprimentos/lista'}>Cancel</CancelButton>
+                <CancelButton href={'/login'}>Cancel</CancelButton>
             </Wrapper>
         )
     }
