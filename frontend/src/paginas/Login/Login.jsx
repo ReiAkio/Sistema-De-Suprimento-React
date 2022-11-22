@@ -88,7 +88,8 @@ const handleSubmit = (e) => {
 		if (result.data.mensagem === "Logado") {
 			setLogin(true);
 			sessionStorage.setItem("Login",true);
-			navigate("/suprimentos/lista")
+			navigate("/suprimentos/lista");
+			window.location.reload(true);
 			
 		}
 		else{

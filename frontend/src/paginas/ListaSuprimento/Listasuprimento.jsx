@@ -99,6 +99,7 @@ class ListaSuprimentos extends Component {
 
     componentDidMount = async () => {
         this.setState({ isLoading: true })
+        
 
         await api.getTodosSuprimentos().then(suprimentos => {
             this.setState({
@@ -109,6 +110,7 @@ class ListaSuprimentos extends Component {
     }
 
     render() {
+        
         const { suprimentos, isLoading } = this.state
 
         const columns = [

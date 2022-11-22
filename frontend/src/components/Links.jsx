@@ -12,10 +12,10 @@ const List = styled.div.attrs({
 
 const ItemLogout = styled.div.attrs({
     className: 'collpase navbar-collapse',
-})` Position: relative;
-Left: 50%;
-text-align: center;
-margin: 15px 15px 15px 15px;`
+})` Position: absolute;
+right: 100%;
+text-align: left;
+margin: 15px 50px 15px 15px;`
 
 const Item = styled.div.attrs({
     className: 'collpase navbar-collapse',
