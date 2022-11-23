@@ -95,6 +95,7 @@ const handleSubmit = (e) => {
 		else{
 			setLogin(false);
 			sessionStorage.setItem("Login",false);
+			window.alert("Usuario e/ou senha incorretos")
 		}
 		
       })
