@@ -109,21 +109,19 @@ const handleSubmit = (e) => {
 
 return (
 	<Wrapper>
-	<Title>Criar Usuário</Title><br></br>
+	<Title>Login</Title><br></br>
 
-	<Label>Nome </Label>
+	<Label>Nome:</Label>
 	<InputText
 		type="text"
-		placeholder='Nome'
 		value={userName}
 		onChange={(e) => setName(e.target.value)}
 
 	/>
 
-	<Label>Senha </Label>
+	<Label>Senha:</Label>
 	<InputText
 		type="password"
-		placeholder='senha'
 		value={password}
 		onChange={(e) => setPassword(e.target.value)}
 		id="inputPassword"
@@ -135,9 +133,9 @@ onClick={showPassword}
 />
 <br></br>             
 
-	<ButtonLogin onClick={(e) => handleSubmit(e)}>Login</ButtonLogin>
+	<ButtonLogin onClick={(e) => handleSubmit(e)}>Entrar</ButtonLogin>
 	<br></br>
-	<Span>Ainda não tem cadastro? <a href="/cadastro">Crie um novo usuario</a></Span>
+	<Span>Ainda não tem cadastro? <br></br><a href="/cadastro">Crie um novo usuario</a></Span>
 	<div>
 		<div>{EstouLogado()}</div>		
       </div>

@@ -64,7 +64,7 @@ class UpdateSuprimento extends Component {
     }
 
     render() {
-        return <Update onClick={this.updateUser}>Update</Update>
+        return <Update onClick={this.updateUser}>Atualizar</Update>
     }
 }
 
@@ -83,7 +83,7 @@ class DeleteSuprimento extends Component {
     }
 
     render() {
-        return <Delete onClick={this.deleteUser}>Delete</Delete>
+        return <Delete onClick={this.deleteUser}>Excluir</Delete>
     }
 }
 

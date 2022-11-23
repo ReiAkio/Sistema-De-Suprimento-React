@@ -118,7 +118,7 @@ class InserirSuprimento extends Component {
                 <br></br>
 
                 <Button onClick={this.handleIncludeSuprimento}>Adicionar Suprimento</Button>
-                <CancelButton href={'/suprimentos/lista'}>Cancel</CancelButton>
+                <CancelButton href={'/suprimentos/lista'}>Cancelar</CancelButton>
             </Wrapper>
         )
     }

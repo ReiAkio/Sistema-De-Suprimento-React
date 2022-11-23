@@ -70,10 +70,12 @@ class InserirUsuario extends Component {
         else{  
         await api.inserirUsuario(payload).then(res => {
             window.alert(`Usuario ` + userName + ` cadastrado com successo`)
+            window.location.href = '/login'
             this.setState({
                 userName: '',
                 passsword: '',
             })
+            
         })
     }
     }
@@ -93,19 +95,17 @@ class InserirUsuario extends Component {
             <Wrapper>
                 <Title>Criar Usuário</Title><br></br>
 
-                <Label>Nome </Label>
+                <Label>Nome:</Label>
                 <InputText
                     type="text"
-                    placeholder='Nome'
                     value={userName}
                     onChange={this.handleChangeInputNome}
 
                 />
 
-				<Label>Senha </Label>
+				<Label>Senha:</Label>
                 <InputText
                     type="password"
-                    placeholder='senha'
                     value={password}
                     onChange={this.handleChangeInputSenha}
 					id="inputPassword"
@@ -117,8 +117,8 @@ class InserirUsuario extends Component {
 			/>
 			<br></br>             
 
-                <Button onClick={this.handleIncludeUsuario}>Adicionar Usuario</Button>
-                <CancelButton href={'/login'}>Cancel</CancelButton>
+                <Button onClick={this.handleIncludeUsuario}>Adicionar Usuário</Button>
+                <CancelButton href={'/login'}>Cancelar</CancelButton>
             </Wrapper>
         )
     }
