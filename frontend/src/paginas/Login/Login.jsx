@@ -135,7 +135,7 @@ onClick={showPassword}
 
 	<ButtonLogin onClick={(e) => handleSubmit(e)}>Entrar</ButtonLogin>
 	<br></br>
-	<Span>Ainda não tem cadastro? <br></br><a href="/cadastro">Crie um novo usuario</a></Span>
+	<Span>Ainda não tem cadastro? <br></br><a href="/cadastro">Crie um novo usuário</a></Span>
 	<div>
 		<div>{EstouLogado()}</div>		
       </div>

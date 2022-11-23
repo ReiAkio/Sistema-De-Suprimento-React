@@ -23,6 +23,11 @@ const Item = styled.div.attrs({
 
 
 function Links() {
+    const handleSubmit = (e) => {
+        sessionStorage.setItem("Login",false);
+            
+    }
+    
     if (sessionStorage.getItem("Login") == 'true') {
 
         return((
@@ -38,7 +43,7 @@ function Links() {
                             </Link>
                         </Item>
                         <Item>
-                            <Link to="/logout" className="nav-link">
+                            <Link to="/login" className="nav-link" onClick={(e) => handleSubmit(e)}>
                                 Logout
                             </Link>
                         </Item>
