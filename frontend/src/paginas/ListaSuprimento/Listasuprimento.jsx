@@ -74,7 +74,7 @@ class DeleteSuprimento extends Component {
 
         if (
             window.confirm(
-                `Voce tem certeza que quer deletar ${this.props.name} permanentemente?`,
+                `Voce tem certeza que quer deletar ${this.props.nameSupply} permanentemente?`,
             )
         ) {
             api.deletarSuprimentoPorId(this.props.id)
@@ -140,7 +140,7 @@ class ListaSuprimentos extends Component {
                 Cell: function(props) {
                     return (
                         <span>
-                            <DeleteSuprimento id={props.original._id} />
+                            <DeleteSuprimento id={props.original._id} nameSupply={props.original.nameSupply} />
                         </span>
                     )
                 },
