@@ -13,7 +13,7 @@ export const getSuprimentoPorId = id => api.get(`/suprimentos/${id}`)
 
 export const inserirUsuario = payload => api.post(`/usuario`, payload)
 export const getTodosUsuarios = () => api.get(`/usuario`)
-export const login = payload => api.post(`/login`, payload)
+export const login = payload => api.post(`/usuario/login`, payload)
 
 
 

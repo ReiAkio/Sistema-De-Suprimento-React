@@ -1,3 +1,3 @@
-import Inserirusuario from "./InserirUsuario"
+import InserirUsuario from "./InserirUsuario";
 
-export {Inserirusuario}
+export {InserirUsuario}

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { useEffect } from 'react'
 import styled from 'styled-components'
 import Links from './Links'
 
@@ -11,19 +12,32 @@ const Container = styled.div.attrs({
 const Nav = styled.nav.attrs({
     className: 'navbar navbar-expand-lg navbar-white bg-clear',
 })`
+
     margin-bottom: 20 px;
 `
 
-class NavBar extends Component {
-    render() {
-        return (
-            <Container>
-                <Nav>
-                    <Links />
-                </Nav>
-            </Container>
-        )
-    }
+function NavBar() {
+
+
+    return (
+        <Container>
+            <Nav>
+                <Links />
+            </Nav>
+        </Container>
+    )
 }
+
+// class NavBar extends Component {
+//     render() {
+//         return (
+//             <Container>
+//                 <Nav>
+//                     <Links />
+//                 </Nav>
+//             </Container>
+//         )
+//     }
+// }
 
 export default NavBar

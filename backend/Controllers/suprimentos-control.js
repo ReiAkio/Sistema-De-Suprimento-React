@@ -1,3 +1,4 @@
+const { json } = require("express");
 const express = require ("express");
 const Suprimento = require ('../models/suprimento')
 
@@ -5,17 +6,30 @@ const Suprimento = require ('../models/suprimento')
 let suprimentosAux = [];
 let contadorSuprimento = 0;
 
-getSuprimento = async (req, res,next) => {
+// getSuprimento = async (req, res,next) => {
 
-  Suprimento.find().then(documents => {
-    SuprimentosEncontrados = documents;
-    res.status(201).json({
-      // mensagem: "Tudo OK",
-      suprimentos: documents
-      })
-    console.log(documents)
-  })
+//   Suprimento.find().then(suprimentos => {
+//     SuprimentosEncontrados = suprimentos;
+//     res.status(201).json({ success: true, data: suprimentos})
+//     console.log(suprimentos)
+//   })
 
+// };
+
+
+
+getSuprimento = async (req, res) => {
+  await Suprimento.find({}, (err, suprimentos) => {
+      if (err) {
+          return res.status(400).json({ success: false, error: err })
+      }
+      if (!suprimentos.length) {
+          return res
+              .status(404)
+              .json({ success: false, error: `Suprimento nao encontrado` })
+      }
+      return res.status(200).json({ success: true, data: suprimentos })
+  }).clone().catch(err => console.log(err))
 };
 
  criarSuprimento = async (req, res) => {
@@ -33,7 +47,7 @@ getSuprimento = async (req, res,next) => {
 
     if (suprimento) {
       //console.log ("Entrei if")
-      suprimento.qttSupply += req.body.qttSupply
+      suprimento.qttSupply += parseFloat(req.body.qttSupply)
       suprimento.save();
       res.status(200).json(suprimento)
     }
@@ -61,6 +75,7 @@ getSuprimento = async (req, res,next) => {
   Suprimento.updateOne({_id: req.params.id}, suprimento)
   .then ((resultado) => {
   console.log (resultado)
+  console.log("Atualização realizada com sucesso")
   });
   res.status(200).json({mensagem: 'Atualização realizada com sucesso'})
  };
@@ -70,7 +85,7 @@ getSuprimento = async (req, res,next) => {
 
 
 
- getSuprimentoPorId = async  (req, res, next) => {
+ getSuprimentoPorId =  (req, res, next) => {
   Suprimento.findById(req.params.id).then(sup => {
   if (sup){
   res.status(200).json(sup);
@@ -82,12 +97,12 @@ getSuprimento = async (req, res,next) => {
 
 
 
-
-
  deletarSuprimento = async	 (req, res, next) => {
   console.log("id: ", req.params.id);
   Suprimento.deleteOne({ _id: req.params.id }).then((resultado) => {
-  console.log(resultado);
+    console.log("Suprimento removido")
+    console.log(resultado);
+  
   res.status(200).json({ mensagem: "Suprimento removido" })
   });
  };

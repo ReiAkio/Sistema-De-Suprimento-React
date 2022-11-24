@@ -8,7 +8,7 @@ FROM node:alpine
 COPY package.json .
 
  #instala as dependências
-RUN npm install
+RUN npm install --legacy-peer-deps
 
  #copia todo o conteúdo .local para a imagem
 COPY . .
