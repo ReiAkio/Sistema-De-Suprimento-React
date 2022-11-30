@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import api from '../../api'
-
 import styled from 'styled-components'
 
 const Title = styled.h1.attrs({
@@ -91,14 +90,15 @@ class InserirSuprimento extends Component {
                 <Title>Criar Suprimento</Title>
 
                 <Label>Nome: </Label>
-                <InputText
+                <InputText required
                     type="text"
                     value={nameSupply}
                     onChange={this.handleChangeInputNome}
+                    
                 />
 
                 <Label>Quantidade: </Label>
-                <InputText
+                <InputText required
                     type= "number"
                     step="0.1"
                     lang="en-US"
@@ -107,6 +107,7 @@ class InserirSuprimento extends Component {
                     pattern="[0-9]+([,\.][0-9]+)?"
                     value={qttSupply}
                     onChange={this.handleChangeInputQuantidade}
+                    
                 />
 
                 <Label>Tipo: </Label>

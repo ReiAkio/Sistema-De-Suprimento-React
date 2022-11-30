@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import api from '../../api'
-
 import styled from 'styled-components'
 
 const Title = styled.h1.attrs({
@@ -19,6 +18,7 @@ const Label = styled.label`
 
 const InputText = styled.input.attrs({
     className: 'form-control',
+
 })`
     margin: 5px;
 `
@@ -96,7 +96,7 @@ class InserirUsuario extends Component {
                 <Title>Criar Usuário</Title><br></br>
 
                 <Label>Nome:</Label>
-                <InputText
+                <InputText required
                     type="text"
                     value={userName}
                     onChange={this.handleChangeInputNome}
@@ -104,7 +104,7 @@ class InserirUsuario extends Component {
                 />
 
 				<Label>Senha:</Label>
-                <InputText
+                <InputText required
                     type="password"
                     value={password}
                     onChange={this.handleChangeInputSenha}

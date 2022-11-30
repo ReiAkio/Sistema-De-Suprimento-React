@@ -1,7 +1,5 @@
 import React,{useState, useEffect} from 'react';
-import './Login.css';
 import {Routes, Route, useNavigate} from 'react-router-dom';
-import InserirUsuario from '../Inserirusuario/InserirUsuario';
 import api from '../../api'
 import styled from 'styled-components'
 

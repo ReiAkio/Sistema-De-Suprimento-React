@@ -1,36 +1,14 @@
 import React, { Component } from 'react'
 import ReactTable from 'react-table-6';
 import 'react-table-6/react-table.css';
-
-
 import api from '../../api'
 import styled from 'styled-components'
 
 
 
 const Wrapper = styled.div`
-    padding: 40px 40px 40px 40px;
-    
-    
+    padding: 40px 40px 40px 40px;    
   `
-
-// const Update = styled.div`
-// text-align: center;
-// box-shadow:inset 0px 1px 0px 0px #fff6af;
-// 	background:linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
-// 	background-color:#ffec64;
-// 	border-radius:18px;
-// 	border:1px solid #ffaa22;
-// 	display:inline-block;
-// 	cursor:pointer;
-// 	color:#333333;
-// 	font-size:11px;
-// 	font-weight:bold;
-// 	padding:3px 12px;
-// 	text-decoration:none;
-// 	text-shadow:0px 1px 0px #ffee66;
-
-// `
 const Update = styled.a.attrs({
     className: `btn btn-warning`,
 })`
@@ -38,23 +16,7 @@ const Update = styled.a.attrs({
 const Delete = styled.a.attrs({
     className: `btn btn-danger`,
 })`
-    
 `
-// const Delete = styled.div`
-// text-align: center;
-// box-shadow:inset 0px 1px 0px 0px  #8a2a21;
-// background:linear-gradient(to bottom, #c62d1f 5%, #f24437 100%);
-// background-color:#c62d1f;
-// border-radius:18px;
-// border:1px solid #d02718;
-// display:inline-block;
-// cursor:pointer;
-// color:#ffffff;
-// font-size:11px;
-// padding:3px 12px;
-// text-decoration:none;
-// text-shadow:0px 1px 0px #810e05;
-// `
 
 class UpdateSuprimento extends Component {
     updateUser = event => {
@@ -171,7 +133,7 @@ class ListaSuprimentos extends Component {
                         data={suprimentos}
                         columns={columns}
                         loading={isLoading}
-                        defaultPageSize={10}
+                        defaultPageSize={5}
                         showPageSizeOptions={true}
                         minRows={0}
                     />

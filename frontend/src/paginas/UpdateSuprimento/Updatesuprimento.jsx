@@ -1,8 +1,6 @@
 import React, { useState,useEffect } from 'react'
 import api from '../../api'
-
 import styled from 'styled-components'
-
 import { useParams,useNavigate } from 'react-router-dom';
 
 const Title = styled.h1.attrs({
@@ -56,14 +54,9 @@ function UpdateSuprimento() {
 
     const fetchData =  () => {
         return api.getSuprimentoPorId(params.id);
-        // setName(suprimento.data.nameSupply);
-        // setQtt(suprimento.data.qttSupply);
-        // setType(suprimento.data.typeSupply);
-        // return suprimento.then(data => console.log(data))
     }
     const fetch = () => {
         const suprimento = fetchData()
-    //suprimento.then(data => console.log(data.data))
     suprimento.then(data => setName(data.data.nameSupply))
     suprimento.then(data => setQtt(data.data.qttSupply))
     suprimento.then(data => setType(data.data.typeSupply))
@@ -114,13 +107,13 @@ function UpdateSuprimento() {
             <Title>Atualizar Suprimento</Title>
 
             <Label>Nome: </Label>
-            <InputText
+            <InputText required
                 type="text"
                 value={nameSupply}
                 onChange={handleNameSupplyInput} />
 
             <Label>Quantidade: </Label>
-            <InputText
+            <InputText required
                 type="number"
                 step="0.1"
                 lang="en-US"
@@ -139,17 +132,9 @@ function UpdateSuprimento() {
             <br></br>
 
             <Button onClick={handleUpdateSuprimento}>Atualizar Suprimento</Button>
-            <CancelButton href={'/suprimentos/lista'}>Cancel</CancelButton>
+            <CancelButton href={'/suprimentos/lista'}>Cancelar</CancelButton>
         </Wrapper></>
-    
-    
     )
-
-
-
-
   };
-
-
 
   export default UpdateSuprimento
